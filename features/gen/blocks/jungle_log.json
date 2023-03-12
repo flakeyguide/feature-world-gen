@@ -1,0 +1,16 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:single_block_feature": {
+		"description": {
+			"identifier": "flakey:gen/blocks/jungle_log"
+		},
+		"places_block": {
+			"name": "minecraft:log",
+			"states": {
+				"old_log_type": "jungle"
+			}
+		},
+		"enforce_placement_rules": false,
+		"enforce_survivability_rules": false
+	}
+}

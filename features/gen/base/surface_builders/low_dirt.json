@@ -1,0 +1,14 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:single_block_feature": {
+		"description": {
+			"identifier": "flakey:gen/base/surface_builders/low_dirt"
+		},
+		"places_block": "zombie:dirt2",
+		"may_attach_to": {
+			"top": "zombie:dirt1"
+        },
+		"enforce_placement_rules": false,
+		"enforce_survivability_rules": false
+	}
+}

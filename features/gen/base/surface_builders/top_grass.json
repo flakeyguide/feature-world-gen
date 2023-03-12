@@ -1,0 +1,14 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:single_block_feature": {
+		"description": {
+			"identifier": "flakey:gen/base/surface_builders/top_grass"
+		},
+		"places_block": "minecraft:grass",
+		"may_attach_to": {
+			"top": "minecraft:air"
+        },
+		"enforce_placement_rules": false,
+		"enforce_survivability_rules": false
+	}
+}

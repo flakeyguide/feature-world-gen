@@ -1,0 +1,16 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:single_block_feature": {
+		"description": {
+			"identifier": "flakey:gen/blocks/cut_sandstone"
+		},
+		"places_block": {
+			"name": "minecraft:sandstone",
+			"states": {
+				"sand_stone_type": "cut"
+			}
+		},
+		"enforce_placement_rules": false,
+		"enforce_survivability_rules": false
+	}
+}

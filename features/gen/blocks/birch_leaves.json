@@ -1,0 +1,16 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:single_block_feature": {
+		"description": {
+			"identifier": "flakey:gen/blocks/birch_leaves"
+		},
+		"places_block": {
+			"name": "minecraft:leaves",
+			"states": {
+				"old_leaf_type": "birch"
+			}
+		},
+		"enforce_placement_rules": false,
+		"enforce_survivability_rules": false
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:scatter_feature": {
+		"description": {
+			"identifier": "flakey:gen/base/column_block_place"
+		},
+		"places_feature": "flakey:gen/base/block_calculations",
+		"iterations": "t.column_max_height_output",
+		"x": 0,
+		"z": 0,
+		"y": {
+			"distribution": "fixed_grid",
+			"extent": [
+				0,
+				"t.column_max_height_output"
+			]
+		}
+	}
+}

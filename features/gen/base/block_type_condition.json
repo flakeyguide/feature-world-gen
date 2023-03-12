@@ -1,0 +1,35 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:conditional_list": {
+		"description": {
+			"identifier": "flakey:gen/base/block_type_condition"
+		},
+		"conditional_features": [
+			{
+				"places_feature": "flakey:gen/base/surface_builders/top_grass",
+				"condition": "t.block_type == 'stone'"
+			},
+			{
+				"places_feature": "flakey:gen/base/surface_builders/top_dirt",
+				"condition": "t.block_type == 'stone'"
+			},
+			{
+				"places_feature": "flakey:gen/base/surface_builders/low_dirt",
+				"condition": "t.block_type == 'stone'"
+			},
+			{
+				"places_feature": "flakey:gen/blocks/stone",
+				"condition": "t.block_type == 'stone'"
+			},
+			{
+				"places_feature": "flakey:gen/blocks/water",
+				"condition": "t.block_type == 'water'"
+			},
+			{
+				"places_feature": "flakey:gen/blocks/air",
+				"condition": 1
+			}
+		],
+		"early_out_scheme": "placement_success"
+	}
+}

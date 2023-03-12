@@ -1,0 +1,14 @@
+{
+	"format_version": "1.13.0",
+
+	"minecraft:aggregate_feature": {
+		"description": {
+			"identifier": "flakey:gen/base/column_aggregate"
+		},
+
+		"features": [
+			"flakey:gen/base/column_block_place"
+		],
+		"early_out": "none"
+	}
+}
