@@ -1,0 +1,141 @@
+// Per Block (Generally)
+(v.originy > t.column_low_height_spline_output) ? {
+    t.yz_noise16 = q.noise(v.originy/16, v.originz/16);
+    t.xy_noise16 = q.noise(v.originx/16, v.originy/16);
+    t.zx_noise16 = q.noise(v.originz/16, v.originx/16);
+
+    t.yz_noise32 = q.noise(v.originy/32, v.originz/32);
+    t.xy_noise32 = q.noise(v.originx/32, v.originy/32);
+    t.zx_noise32 = q.noise(v.originz/32, v.originx/32);
+
+    t.yz_noise64 = q.noise(v.originy/64, v.originz/64);
+    t.xy_noise64 = q.noise(v.originx/64, v.originy/64);
+    t.zx_noise64 = q.noise(v.originz/64, v.originx/64);
+
+    t.yz_noise128 = q.noise(v.originy/128, v.originz/128);
+    t.xy_noise128 = q.noise(v.originx/128, v.originy/128);
+    t.zx_noise128 = q.noise(v.originz/128, v.originx/128);
+
+    t.yz_noise256 = q.noise(v.originy/256, v.originz/256);
+    t.xy_noise256 = q.noise(v.originx/256, v.originy/256);
+    t.zx_noise256 = q.noise(v.originz/256, v.originx/256);
+
+    t.yz_noise512 = q.noise(v.originy/512, v.originz/512);
+    t.xy_noise512 = q.noise(v.originx/512, v.originy/512);
+    t.zx_noise512 = q.noise(v.originz/512, v.originx/512);
+
+    t.yz_noise1024 = q.noise(v.originy/1024, v.originz/1024);
+    t.xy_noise1024 = q.noise(v.originx/1024, v.originy/1024);
+    t.zx_noise1024 = q.noise(v.originz/1024, v.originx/1024);
+
+    t.noise_weight16 = 3;
+    t.noise_weight32 = 5;
+    t.noise_weight64 = 4;
+    t.noise_weight128 = 3;
+    t.noise_weight256 = 2;
+    t.noise_weight512 = 1;
+    t.noise_weight1024 = 1;
+
+    t.totaled_noise16 = (t.yz_noise16 + t.xy_noise16 + t.zx_noise16)/3;
+    t.totaled_noise32 = (t.yz_noise32 + t.xy_noise32 + t.zx_noise32)/3;
+    t.totaled_noise64 = (t.yz_noise64 + t.xy_noise64 + t.zx_noise64)/3;
+    t.totaled_noise128 = (t.yz_noise128 + t.xy_noise128 + t.zx_noise128)/3;
+    t.totaled_noise256 = (t.yz_noise256 + t.xy_noise256 + t.zx_noise256)/3;
+    t.totaled_noise512 = (t.yz_noise512 + t.xy_noise512 + t.zx_noise512)/3;
+    t.totaled_noise1024 = (t.yz_noise512 + t.xy_noise512 + t.zx_noise512)/3;
+
+    t.weighted_noises = ((t.noise_weight16 * t.totaled_noise16) + (t.noise_weight32 * t.totaled_noise32) + (t.noise_weight64 * t.totaled_noise64) + (t.noise_weight128 * t.totaled_noise128) + (t.noise_weight256 * t.totaled_noise256) + (t.noise_weight512 * t.totaled_noise512) + (t.noise_weight1024 * t.totaled_noise1024)) / (t.noise_weight16 + t.noise_weight32 + t.noise_weight64 + t.noise_weight128 + t.noise_weight256 + t.noise_weight512 + t.noise_weight1024);
+
+
+
+//set y values for percentages
+    //1 below this value
+    t.block_percent_spline_0 = 0; //LOCKED (bottom of gen space)
+
+    t.block_percent_spline_1 = t.column_low_height_spline_output;
+    t.block_percent_spline_2 = t.column_high_height_spline_output;
+    
+    t.block_percent_spline_3 = t.column_max_height_output; // LOCKED (top of gen space)
+    //-1 above this value
+
+
+    //1 below this value
+    t.block_percent_0 = 1; //LOCKED
+
+    t.block_percent_1 = t.column_low_spline_output;
+    t.block_percent_2 = t.column_high_spline_output;
+    
+    t.block_percent_3 = -1; // LOCKED
+    //-1 above this value
+    
+
+// 1 means place
+// -1 means dont place
+    
+
+    (v.originy < t.block_percent_spline_0) ? {
+        t.block_percent_output = t.block_percent_0;
+    };
+    (v.originy >= t.block_percent_spline_0 && v.originy < t.block_percent_spline_1) ? {
+        t.block_percent_output = 
+            t.block_percent_0
+        + ((t.block_percent_1) - (t.block_percent_0)) 
+            * math.hermite_blend(
+                (v.originy - t.block_percent_spline_0)
+                / (t.block_percent_spline_1 - t.block_percent_spline_0)
+            );
+    };
+    (v.originy >= t.block_percent_spline_1 && v.originy < t.block_percent_spline_2) ? {
+        t.block_percent_output = 
+            t.block_percent_1
+        + ((t.block_percent_2) - (t.block_percent_1)) 
+            * math.hermite_blend(
+                (v.originy - t.block_percent_spline_1)
+                / (t.block_percent_spline_2 - t.block_percent_spline_1)
+            );
+    };
+    (v.originy >= t.block_percent_spline_2 && v.originy < t.block_percent_spline_3) ? {
+        t.block_percent_output = 
+            t.block_percent_2
+        + ((t.block_percent_3) - (t.block_percent_2)) 
+            * math.hermite_blend(
+                (v.originy - t.block_percent_spline_2)
+                / (t.block_percent_spline_3 - t.block_percent_spline_2)
+            );
+    };
+    (v.originy >= t.block_percent_spline_3 && v.originy <= t.block_percent_spline_4) ? {
+        t.block_percent_output = 
+            t.block_percent_3
+        + ((t.block_percent_4) - (t.block_percent_3)) 
+            * math.hermite_blend(
+                (v.originy - t.block_percent_spline_3)
+                / (t.block_percent_spline_4 - t.block_percent_spline_3)
+            );
+    };
+    (v.originy > t.block_percent_spline_3) ? {
+        t.block_percent_output = t.block_percent_3;
+    };
+
+t.weighted_noises = math.round(t.weighted_noises * 100)/100;
+t.block_percent_output = math.round(t.block_percent_output * 100)/100;
+
+
+    (t.weighted_noises <= t.block_percent_output) ? {
+        t.return_block = 1;
+        t.block_type = 'stone';
+    };
+    (t.weighted_noises > t.block_percent_output && v.originy <= 50) ? {
+        t.return_block = 1;
+        t.block_type = 'water';
+    }; 
+    (t.weighted_noises > t.block_percent_output && v.originy > 50) ? {
+        t.return_block = 0;
+        t.block_type = 'air';
+    };
+} : {
+    t.return_block = 1;
+    t.block_type = 'stone';
+};
+
+    return t.return_block;
+    
